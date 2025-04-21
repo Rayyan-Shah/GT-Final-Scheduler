@@ -1,5 +1,6 @@
+"use client";
+
 import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
 import styles from "./page.module.css";
 
 type Props = Omit<ImageProps, "src"> & {
@@ -31,6 +32,7 @@ export default function Home() {
           height={38}
           priority
         />
+
         <ol>
           <li>
             Get started by editing <code>apps/web/app/page.tsx</code>
@@ -63,10 +65,15 @@ export default function Home() {
             Read our docs
           </a>
         </div>
-        <Button appName="web" className={styles.secondary}>
+
+        <button
+          className={styles.secondary}
+          onClick={() => alert("Hello from web!")}
+        >
           Open alert
-        </Button>
+        </button>
       </main>
+
       <footer className={styles.footer}>
         <a
           href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"

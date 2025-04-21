@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@exam-planner/core": ["packages/core/src"],
+      "@exam-planner/core/*": ["packages/core/src/*"]
+    },
+    "skipLibCheck": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true
+  },
+  "include": [
+    "packages/core/src",
+    "apps/api/src",
+    "apps/web/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
