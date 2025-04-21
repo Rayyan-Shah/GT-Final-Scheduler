@@ -1,15 +1,14 @@
-// packages/core/src/index.ts
+// packages/core/src/models.ts
 import { z } from "zod";
 
-// --- Course schema/type
 export const CourseSchema = z.object({
   id: z.string(),
   name: z.string(),
   instructor: z.string(),
+  // …any other fields
 });
 export type Course = z.infer<typeof CourseSchema>;
 
-// --- Schedule schema/type
 export const ScheduleSchema = z.object({
   courseId: z.string(),
   date: z.string(),      // ISO date

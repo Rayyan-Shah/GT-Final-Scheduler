@@ -1,15 +1,26 @@
-import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
+// apps/api/src/routes/courses.ts
+import { FastifyPluginAsync } from 'fastify';
+import { z } from 'zod';
+import { CourseSchema } from '@exam-planner/core';
 
-export default function coursesRoute(app: FastifyInstance) {
-  app.get<{
-    Querystring: { term: string; code: string }
-  }>("/api/courses", async (req: FastifyRequest<{ Querystring: { term: string; code: string } }>, reply: FastifyReply) => {
-    const { term, code } = req.query;
-    // TODO: replace with real fetchSections(term, code) call
-    const sections = [
-      { crn: "12345", section: "A", meeting: { days: "MWF", start: "10:00", end: "10:50" } },
-      { crn: "67890", section: "B", meeting: { days: "TR", start: "14:00", end: "15:15" } },
-    ];
-    return reply.send(sections);
-  });
-}
+const coursesRoute: FastifyPluginAsync = async (fastify) => {
+  fastify.get(
+    '/courses',
+    {
+      schema: {
+        response: {
+          200: z.array(CourseSchema)
+        }
+      }
+    },
+    async (request, reply) => {
+      // TODO: replace with real data lookup
+      const dummyCourses = [
+        { id: 'cs101', name: 'Intro to CS', instructor: 'Prof. X' }
+      ];
+      return dummyCourses;
+    }
+  );
+};
+
+export default coursesRoute;
